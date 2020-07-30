@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    baseUrl: "/api",
+    baseUrl: "/api/v1",
     afterUrl_1: "/student",
     afterUrl_2: "/student/score",
     afterUrl_3: "/student/teacher",
