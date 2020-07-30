@@ -6,16 +6,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    redirect: "/first_step",
-  },
-  {
-    path: "/first_step",
-    component: () => import("../view/first_step.vue"),
-  },
-  {
-    path: "/second_step",
-    name: "Second",
-    component: () => import("../view/second_step.vue"),
+    redirect: "/home",
   },
   {
     path: "/error",
