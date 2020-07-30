@@ -45,6 +45,15 @@ export const getFiring = () => {
   });
 };
 
+export const getFired = () => {
+  const BASEURL = store.state.baseUrl;
+
+  return axios({
+    method: "get",
+    url: BASEURL + store.state.afterUrl_6,
+  });
+};
+
 export const postMsg = (value) => {
   const BASEURL = store.state.baseUrl;
 

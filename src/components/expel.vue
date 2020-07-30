@@ -1,13 +1,19 @@
 <template>
   <div>
-    <a-table :columns="columns" :data-source="data" bordered :loading="loading">
+    <h3>快要被开除的学生（单个学期内未满足教学计划）</h3>
+    <a-table :columns="columns" :data-source="firing" bordered :loading="loading">
+      <a slot="name" slot-scope="text">{{ text }}</a>
+      <span slot="customTitle"><a-icon type="smile-o" />学生姓名</span>
+    </a-table>
+    <h3>已经被开除的学生（单个学期内挂科学分过多）</h3>
+    <a-table :columns="columns" :data-source="fired" bordered :loading="loading">
       <a slot="name" slot-scope="text">{{ text }}</a>
       <span slot="customTitle"><a-icon type="smile-o" />学生姓名</span>
     </a-table>
   </div>
 </template>
 <script>
-import { getFiring } from "../api/index";
+import { getFiring, getFired } from "../api/index";
 
 const columns = [
   {
@@ -57,19 +63,26 @@ const columns = [
 
 export default {
   async mounted() {
-    const content = await getFiring();
-    console.log(content);
-    
-    this.loading = false
+    var content;
+    content = await getFiring();
     content.forEach((element) => {
       element.birthDate = new Date(element.birthDate * 1000).toLocaleString().slice(0,-10)
       element.male = element.male ? "男" : "女";
     });
-    this.data = content;
+    this.firing = content;
+    
+    content = await getFired();
+    content.forEach((element) => {
+      element.birthDate = new Date(element.birthDate * 1000).toLocaleString().slice(0,-10)
+      element.male = element.male ? "男" : "女";
+    });
+    this.fired = content;
+    this.loading = false
   },
   data() {
     return {
-      data: [],
+      firing: [],
+      fired: [],
       columns,
       name: "",
       id: 0,

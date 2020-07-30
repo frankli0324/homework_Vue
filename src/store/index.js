@@ -11,6 +11,7 @@ export default new Vuex.Store({
     afterUrl_3: "/student/teacher",
     afterUrl_4: "/student/firing",
     afterUrl_5: "/data",
+    afterUrl_6: "/student/fired",
     registerStep: 0,
     studentMsg:{},
     getMsgAgain: false
